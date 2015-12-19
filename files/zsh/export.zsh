@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 export LANG=en_US.UTF-8
 
-export HOMEBREW_GITHUB_API_TOKEN=7b81ebcf8b9921b15300d85162b144370bd8bfb7
+source $HOME/.homebrew-github-token
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 export OFEXPORT_HOME="/Users/manthei/Dropbox/scripts/ofexport"
