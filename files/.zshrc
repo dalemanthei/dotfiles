@@ -1,7 +1,7 @@
 
 source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
-source ~/.oh-my-zsh/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 plugins=(git node npm bower gulp grunt git-flow git-hubflow)
 
