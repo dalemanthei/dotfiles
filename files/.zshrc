@@ -1,6 +1,8 @@
-ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
 
