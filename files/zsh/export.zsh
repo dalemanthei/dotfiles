@@ -1,5 +1,8 @@
 
 export ZSH=$HOME/.oh-my-zsh
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
 export LANG=en_US.UTF-8
 
 source $HOME/.homebrew-github-token
