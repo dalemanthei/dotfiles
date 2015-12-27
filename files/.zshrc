@@ -1,4 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
+ZSH_CUSTOM=$HOME/.dotfiles/files/zsh/custom
 
 source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
