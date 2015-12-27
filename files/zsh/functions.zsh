@@ -21,6 +21,77 @@ cdpf() { # Path Finder
 }
 
 # -------------------------------------------------------------------
+# From http://brettterpstra.com/a-simple-but-handy-bash-function-console/
+# -------------------------------------------------------------------
+function console () {
+  if [[ $# > 0 ]]; then
+    query=$(echo "$*"|tr -s ' ' '|')
+    tail -f /var/log/system.log|grep -i --color=auto -E "$query"
+  else
+    tail -f /var/log/system.log
+  fi
+}
+
+# -------------------------------------------------------------------
+# From http://brettterpstra.com/2015/04/27/a-universal-clipboard-command-for-bash/
+# -------------------------------------------------------------------
+copy() {
+	if [[ $1 =~ ^-?[hH] ]]; then
+
+		echo "Intelligently copies command results, text file, or raw text to"
+		echo "OS X clipboard"
+		echo
+		echo "Usage: copy [command or text]"
+		echo "  or pipe a command: [command] | copy"
+		return
+	fi
+
+	local output
+	local res=false
+	local tmpfile="${TMPDIR}/copy.$RANDOM.txt"
+	local msg=""
+
+	if [[ $# == 0 ]]; then
+		output=$(cat)
+		msg="Input copied to clipboard"
+		res=true
+	else
+		local cmd=""
+		for arg in $@; do
+			cmd+="\"$(echo -en $arg|sed -E 's/"/\\"/g')\" "
+		done
+		output=$(eval "$cmd" 2> /dev/null)
+		if [[ $? == 0 ]]; then
+			msg="Results of command are in the clipboard"
+			res=true
+		else
+			if [[ -f $1 ]]; then
+				output=""
+				for arg in $@; do
+					if [[ -f $arg ]]; then
+						type=`file "$arg"|grep -c text`
+						if [ $type -gt 0 ]; then
+							output+=$(cat $arg)
+							msg+="Contents of $arg are in the clipboard.\n"
+							res=true
+						else
+							msg+="File \"$arg\" is not plain text.\n"
+						fi
+					fi
+				done
+			else
+				output=$@
+				msg="Text copied to clipboard"
+				res=true
+			fi
+		fi
+	fi
+
+	$res && echo -ne "$output" | pbcopy -Prefer txt
+	echo -e "$msg"
+}
+
+# -------------------------------------------------------------------
 # Functions for searching
 # See qfind alias in alias.zsh
 # -------------------------------------------------------------------
@@ -69,20 +140,6 @@ lst() {
 }
 
 # -------------------------------------------------------------------
-# display a neatly formatted path
-# http://zanshin.net/2013/02/02/zsh-configuration-from-the-ground-up/
-# -------------------------------------------------------------------
-path() {
-  echo $PATH | tr ":" "\n" | \
-    awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
-           sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
-           sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
-           sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
-           sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
-           print }"
-}
-
-# -------------------------------------------------------------------
 # ls archives (inspired by `extract`)
 # -------------------------------------------------------------------
 lsz() {
@@ -103,6 +160,20 @@ lsz() {
 }
 
 # -------------------------------------------------------------------
+# display a neatly formatted path
+# http://zanshin.net/2013/02/02/zsh-configuration-from-the-ground-up/
+# -------------------------------------------------------------------
+path() {
+  echo $PATH | tr ":" "\n" | \
+    awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
+           sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
+           sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
+           sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
+           sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
+           print }"
+}
+
+# -------------------------------------------------------------------
 # myIP address
 # http://zanshin.net/2013/02/02/zsh-configuration-from-the-ground-up/
 # -------------------------------------------------------------------
@@ -120,4 +191,23 @@ myip() {
 # -------------------------------------------------------------------
 nicemount() {
 	(echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2="";1') | column -t ;
+}
+
+
+# -------------------------------------------------------------------
+# Print horizontal ruler
+# http://brettterpstra.com/2015/02/20/shell-trick-printf-rules/
+# -------------------------------------------------------------------
+rule () {
+	_hr=$(printf "%*s" $(tput cols)) && echo ${_hr// /${1--}}
+}
+
+# Print horizontal ruler with message
+rulem ()  {
+	if [ $# -eq 0 ]; then
+		echo "Usage: rulem MESSAGE [RULE_CHARACTER]"
+		return 1
+	fi
+	# Fill line with ruler character ($2, default "-"), reset cursor, move 2 cols right, print message
+	_hr=$(printf "%*s" $(tput cols)) && echo -en ${_hr// /${2--}} && echo -e "\r\033[2C$1"
 }
