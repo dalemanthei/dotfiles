@@ -8,7 +8,7 @@ if [ -d ".dotfiles" ]; then
   git pull
   popd > /dev/null
 else
-	git clone "git://github.com/dalemanthei/dotfiles.git" ".dotfiles"
+	git clone "git@github.com:dalemanthei/dotfiles.git" ".dotfiles"
 fi
 
 echo 'Linking files...'
