@@ -7,7 +7,9 @@ ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
 
-plugins=(git node npm bower gulp grunt git-flow git-hubflow)
+plugins=(git node npm bower gulp grunt git-flow git-hubflow z)
+
+. /usr/local/Cellar/z/1.9/etc/profile.d/z.sh
 
 source ~/.dotfiles/files/zsh/export.zsh
 source ~/.dotfiles/files/zsh/alias.zsh
