@@ -100,7 +100,14 @@ ffs() { /usr/bin/find . -name "$@"'*' ; }	# ffs:	Find file whose name starts wit
 ffe() { /usr/bin/find . -name '*'"$@" ; }	# ffe:	Find file whose name ends with a given string
 
 # -------------------------------------------------------------------
-# ls npm packages, add -g to see global installed packages and versions
+# https://github.com/ttscoff/dotfiles/blob/master/.bash_profile
+# -------------------------------------------------------------------
+fp () { #find and list processes matching a case-insensitive partial-match string
+    ps Ao pid,comm|awk '{match($0,/[^\/]+$/); print substr($0,RSTART,RLENGTH)": "$1}'|grep -i $1|grep -v grep
+}
+
+# -------------------------------------------------------------------
+# ls node packages, works with -g
 # -------------------------------------------------------------------
 lsn() {
 	npm list $1 --depth=0
@@ -160,20 +167,6 @@ lsz() {
 }
 
 # -------------------------------------------------------------------
-# display a neatly formatted path
-# http://zanshin.net/2013/02/02/zsh-configuration-from-the-ground-up/
-# -------------------------------------------------------------------
-path() {
-  echo $PATH | tr ":" "\n" | \
-    awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
-           sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
-           sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
-           sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
-           sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
-           print }"
-}
-
-# -------------------------------------------------------------------
 # myIP address
 # http://zanshin.net/2013/02/02/zsh-configuration-from-the-ground-up/
 # -------------------------------------------------------------------
@@ -193,6 +186,26 @@ nicemount() {
 	(echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2="";1') | column -t ;
 }
 
+# -------------------------------------------------------------------
+# display a neatly formatted path
+# http://zanshin.net/2013/02/02/zsh-configuration-from-the-ground-up/
+# -------------------------------------------------------------------
+path() {
+  echo $PATH | tr ":" "\n" | \
+    awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
+           sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
+           sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
+           sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
+           sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
+           print }"
+}
+
+# -------------------------------------------------------------------
+# https://github.com/ttscoff/dotfiles/blob/master/.bash_profile
+# -------------------------------------------------------------------
+pman () { #display man page as a PostScript PDF in Preview.app
+  man -t "$1"|open -f -a "Preview.app"
+}
 
 # -------------------------------------------------------------------
 # Print horizontal ruler
@@ -210,4 +223,8 @@ rulem ()  {
 	fi
 	# Fill line with ruler character ($2, default "-"), reset cursor, move 2 cols right, print message
 	_hr=$(printf "%*s" $(tput cols)) && echo -en ${_hr// /${2--}} && echo -e "\r\033[2C$1"
+}
+
+sman () { #open man page in sublime
+  MANWIDTH=160 MANPAGER='col -bx' man $@ | subl
 }
