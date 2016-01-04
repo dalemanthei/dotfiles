@@ -38,3 +38,4 @@ Thumbs.db
 
 # npm install to get these
 **/node_modules
+**/jspm_packages
