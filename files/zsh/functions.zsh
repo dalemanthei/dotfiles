@@ -106,6 +106,20 @@ fp () { #find and list processes matching a case-insensitive partial-match strin
     ps Ao pid,comm|awk '{match($0,/[^\/]+$/); print substr($0,RSTART,RLENGTH)": "$1}'|grep -i $1|grep -v grep
 }
 
+
+# -------------------------------------------------------------------
+# https://gist.github.com/jimbojsb/1630790
+# -------------------------------------------------------------------
+function light() {
+  if [ -z "$2" ]
+    then src="pbpaste"
+  else
+    src="cat $2"
+  fi
+  $src | highlight -O rtf --syntax $1 --font Inconsolata --style solarized-dark --font-size 24 | pbcopy
+  # $src | highlight -O rtf --syntax $1 | pbcopy
+}
+
 # -------------------------------------------------------------------
 # ls node packages, works with -g
 # -------------------------------------------------------------------

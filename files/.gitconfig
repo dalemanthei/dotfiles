@@ -1,15 +1,21 @@
 [user]
 	name = Dale Manthei
 	email = dalemanthei@users.noreply.github.com
+
+[init]
+	templatedir = ~/.git-templates
+
 [core]
 	excludesfile = /Users/manthei/.gitignore_global
 	pager = less -x 5,9
 	editor = subl -w
 	autocrlf = input
 	whitespace = cr-at-eol
+
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+
 [diff]
 	tool = bcomp
 [difftool]
@@ -30,6 +36,13 @@
 [mergetool "sourcetree"]
 	cmd = /usr/local/bin/bcomp $LOCAL $REMOTE $BASED $MERGED
 	trustExitCode = true
+[push]
+	default = simple
+
+# [filter "lfs"]
+# 	smudge = git-lfs smudge %f
+# 	required = true
+# 	clean = git-lfs clean %f
 
 [alias]
 
@@ -65,9 +78,17 @@
 	d = diff
 	da = diffall
 	co = checkout
+	ci = commit
   br = branch
   #"!git branch -ra | grep -v done"
   bra = branch -ra
+  us = reset HEAD --
+
+	canv = commit --amend --no-verify
+
+	# amend last commit with everything here uncommitted and new
+	caa = commit -a --amend -C HEAD
+	ac = !git add -A && git commit
 
   # list commands
 	# -------------------------------------------------------------------
@@ -107,5 +128,3 @@
 	# amend last commit with everything here uncommitted and new
 	caa = commit -a --amend -C HEAD
 	ac = !git add -A && git commit
-[init]
-	templatedir = ~/.git-templates
