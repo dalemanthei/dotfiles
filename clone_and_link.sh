@@ -21,4 +21,6 @@ ls -1d .dotfiles/files/* .dotfiles/files/.* | while read f; do
 	ln -vsf "$f" .
 done
 
+ln -vsf ~/.dotfiles/files/.git-templates .
+
 popd > /dev/null

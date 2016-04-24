@@ -107,3 +107,5 @@
 	# amend last commit with everything here uncommitted and new
 	caa = commit -a --amend -C HEAD
 	ac = !git add -A && git commit
+[init]
+	templatedir = ~/.git-templates
