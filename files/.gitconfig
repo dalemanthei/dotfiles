@@ -16,6 +16,9 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 
+[tig]
+	tab-size = 4
+
 [diff]
 	tool = bcomp
 [difftool]
