@@ -4,9 +4,9 @@ pushd "$HOME" > /dev/null
 
 if [ -d ".dotfiles" ]; then
 	pushd ".dotfiles" > /dev/null
-  # git smart-pull # TODO
-  git pull
-  popd > /dev/null
+	# git smart-pull # TODO
+	git pull
+	popd > /dev/null
 else
 	git clone "git@github.com:dalemanthei/dotfiles.git" ".dotfiles"
 fi
