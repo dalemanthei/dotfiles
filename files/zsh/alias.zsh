@@ -1,6 +1,8 @@
 # Tip of the hat to:
 # Terpstra aliases http://brettterpstra.com/2013/03/31/a-few-more-of-my-favorite-shell-aliases/
 
+alias qlock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend%"
+
 # find commands, see also ff, ffs, ffe functions in functions.zsh
 # -------------------------------------------------------------------
 alias qfind="find . -name "	# qfind:    Quickly search for file
