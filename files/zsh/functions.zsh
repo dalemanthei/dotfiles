@@ -106,6 +106,10 @@ fp () { #find and list processes matching a case-insensitive partial-match strin
     ps Ao pid,comm|awk '{match($0,/[^\/]+$/); print substr($0,RSTART,RLENGTH)": "$1}'|grep -i $1|grep -v grep
 }
 
+# -------------------------------------------------------------------
+# https://hanckmann.com/2015/08/12/Remove-line-from-zsh-history.html
+# -------------------------------------------------------------------
+histrm() { LC_ALL=C sed -i '' /$1/d $HISTFILE }
 
 # -------------------------------------------------------------------
 # https://gist.github.com/jimbojsb/1630790
