@@ -100,14 +100,22 @@
   hack = town-hack
   kill = town-kill
 
+  # gittown commands
+	# -------------------------------------------------------------------
+	sync = town-sync
+	ship = town-ship
+	hack = town-hack
+	kill = town-kill
+
   # list commands
   # -------------------------------------------------------------------
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   le = log --oneline --decorate
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   ls1 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  lds = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
   ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  lds = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 
   # Edit this config file
   # -------------------------------------------------------------------
@@ -138,3 +146,11 @@
   # amend last commit with everything here uncommitted and new
   caa = commit -a --amend -C HEAD
   ac = !git add -A && git commit
+
+[credential "https://stash.veritas.com"]
+	helper = /Users/dale.manthei/git-credential-veritas-stash.pex --autorun
+[branch]
+	# autosetupmerge = always
+	# autosetuprebase = always
+[pull]
+	# rebase = true
