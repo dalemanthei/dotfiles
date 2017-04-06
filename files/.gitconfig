@@ -1,46 +1,46 @@
 [user]
-	name = Dale Manthei
-	email = dalemanthei@users.noreply.github.com
+  name = Dale Manthei
+  email = dalemanthei@users.noreply.github.com
 
 [init]
-	templatedir = ~/.git-templates
+  templatedir = ~/.git-templates
 
 [core]
-	excludesfile = /Users/manthei/.gitignore_global
-	pager = less -x 5,9
-	editor = subl -w
-	autocrlf = input
-	whitespace = cr-at-eol
+  excludesfile = /Users/manthei/.gitignore_global
+  pager = less -x 5,9
+  editor = subl -w
+  autocrlf = input
+  whitespace = cr-at-eol
 
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
 
 [tig]
-	tab-size = 4
+  tab-size = 4
 
 [diff]
-	tool = bcomp
+  tool = bcomp
 [difftool]
-	prompt = false
+  prompt = false
 [difftool "bcomp"]
-	trustExitCode = true
-	cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
+  trustExitCode = true
+  cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
 [merge]
-	tool = bcomp
+  tool = bcomp
 [mergetool]
-	prompt = false
+  prompt = false
 [mergetool "bcomp"]
-	trustExitCode = true
-	cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+  trustExitCode = true
+  cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 [difftool "sourcetree"]
-	cmd = /usr/local/bin/bcomp $LOCAL $REMOTE
-	path =
+  cmd = /usr/local/bin/bcomp $LOCAL $REMOTE
+  path =
 [mergetool "sourcetree"]
-	cmd = /usr/local/bin/bcomp $LOCAL $REMOTE $BASED $MERGED
-	trustExitCode = true
+  cmd = /usr/local/bin/bcomp $LOCAL $REMOTE $BASED $MERGED
+  trustExitCode = true
 [push]
-	default = simple
+  default = simple
 
 # [filter "lfs"]
 # 	smudge = git-lfs smudge %f
@@ -49,15 +49,15 @@
 
 [alias]
 
-	finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%_10s\\033[m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
+  finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%_10s\\033[m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
 
-	# Rebase a branch from the master without pull and merge
-	# rbom = git rebase origin/master
+  # Rebase a branch from the master without pull and merge
+  # rbom = git rebase origin/master
 
-	# Show remotes and where things are wired:
+  # Show remotes and where things are wired:
   # -------------------------------------------------------------------
-	rso = remote show origin
-	rpo = remote prune origin
+  rso = remote show origin
+  rpo = remote prune origin
 
   # stash aliases - Prefer swip or save over stashes
   # -------------------------------------------------------------------
@@ -72,30 +72,37 @@
 
   # alternative to stashing and popping
   # https://codingkilledthecat.wordpress.com/2012/04/27/git-stash-pop-considered-harmful/
-	# -------------------------------------------------------------------
+  # -------------------------------------------------------------------
   save = !sh -c 'export PREV=$(git symbolic-ref HEAD|cut -d/ -f3-) && git checkout -b "$1" && git commit -am "$1" --no-verify&& git checkout "$PREV"' -
 
   # All the everyday shortcuts
-	# -------------------------------------------------------------------
-	s = status
-	d = diff
-	da = diffall
-	co = checkout
-	ci = commit
+  # -------------------------------------------------------------------
+  s = status
+  d = diff
+  da = diffall
+  co = checkout
+  ci = commit
   br = branch
   #"!git branch -ra | grep -v done"
   bra = branch -ra
   us = reset HEAD --
 
-	canv = commit --amend --no-verify
+  canv = commit --amend --no-verify
 
-	# amend last commit with everything here uncommitted and new
-	caa = commit -a --amend -C HEAD
-	ac = !git add -A && git commit
+  # amend last commit with everything here uncommitted and new
+  caa = commit -a --amend -C HEAD
+  ac = !git add -A && git commit
+
+  # gittown commands
+  # -------------------------------------------------------------------
+  sync = town-sync
+  ship = town-ship
+  hack = town-hack
+  kill = town-kill
 
   # list commands
-	# -------------------------------------------------------------------
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  # -------------------------------------------------------------------
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   le = log --oneline --decorate
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   ls1 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
@@ -103,31 +110,31 @@
   ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
 
   # Edit this config file
-	# -------------------------------------------------------------------
-	ec = config --global -e
+  # -------------------------------------------------------------------
+  ec = config --global -e
 
-	# See https://bitbucket.org/durdn/cfg/src/master/.gitconfig?at=master
+  # See https://bitbucket.org/durdn/cfg/src/master/.gitconfig?at=master
 
-	grep = grep -Ii
+  grep = grep -Ii
   gr = grep -Ii
-	#grep from root folder
+  #grep from root folder
   gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
-	#grep on filename
+  #grep on filename
   f = "!git ls-files | grep -i"
 
   # assume aliases
-	# -------------------------------------------------------------------
+  # -------------------------------------------------------------------
   assume = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
   unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
   assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
 
   #show assumed files
-	# -------------------------------------------------------------------
+  # -------------------------------------------------------------------
   assumed = "!git ls-files -v | grep ^h | cut -c 3-"
 
   canv = commit --amend --no-verify
 
-	# amend last commit with everything here uncommitted and new
-	caa = commit -a --amend -C HEAD
-	ac = !git add -A && git commit
+  # amend last commit with everything here uncommitted and new
+  caa = commit -a --amend -C HEAD
+  ac = !git add -A && git commit
