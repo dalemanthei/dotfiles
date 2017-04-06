@@ -17,5 +17,8 @@ source ~/.dotfiles/files/zsh/history.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Hack for apple safari'ng the bed
+ssh-add -A 2>/dev/null;
+
 # added by travis gem
 [ -f /Users/manthei/.travis/travis.sh ] && source /Users/manthei/.travis/travis.sh
