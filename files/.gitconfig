@@ -102,10 +102,17 @@
 
   # gittown commands
 	# -------------------------------------------------------------------
-	sync = town-sync
-	ship = town-ship
+	append = town-append
 	hack = town-hack
 	kill = town-kill
+	prepend = town-prepend
+	repo = town-repo
+	ship = town-ship
+	sync = town-sync
+
+	new-pull-request = town-new-pull-request
+	prune-branches = town-prune-branches
+	rename-branch = town-rename-branch
 
   # list commands
   # -------------------------------------------------------------------
