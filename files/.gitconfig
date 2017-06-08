@@ -93,6 +93,10 @@
   caa = commit -a --amend -C HEAD
   ac = !git add -A && git commit
 
+  # fetch a pr
+  # -------------------------------------------------------------------
+  fpr =  "!f() { git fetch origin refs/pull-requests/$1/from:PR-$1; }; f"
+
   # gittown commands
   # -------------------------------------------------------------------
 	append = town append
