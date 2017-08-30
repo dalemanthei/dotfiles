@@ -8,7 +8,7 @@
 [core]
   excludesfile = /Users/manthei/.gitignore_global
   pager = less -x 5,9
-  editor = subl -w
+	editor = code --wait
   autocrlf = input
   whitespace = cr-at-eol
 
