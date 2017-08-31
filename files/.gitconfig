@@ -158,4 +158,4 @@
 	# rebase = true
 
 [credential "https://stash.veritas.com"]
-	helper = veritas-stash --autorun
+	helper = /Users/dale.manthei/.git-credential-veritas-stash --autorun
