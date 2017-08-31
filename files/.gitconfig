@@ -151,10 +151,11 @@
   caa = commit -a --amend -C HEAD
   ac = !git add -A && git commit
 
-# [credential "https://stash.veritas.com"]
-# 	helper = /Users/dale.manthei/git-credential-veritas-stash.pex --autorun
 [branch]
 	# autosetupmerge = always
 	# autosetuprebase = always
 [pull]
 	# rebase = true
+
+[credential "https://stash.veritas.com"]
+	helper = veritas-stash --autorun
