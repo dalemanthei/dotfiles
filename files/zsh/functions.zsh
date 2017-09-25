@@ -255,3 +255,6 @@ cdlh() {
 	sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
 	sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'vacuum LSQuarantineEvent'
 }
+ldlh() {
+	sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'select LSQuarantineDataURLString from LSQuarantineEvent where LSQuarantineDataURLString != ""'
+}
