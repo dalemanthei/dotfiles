@@ -246,3 +246,12 @@ rulem ()  {
 sman () { #open man page in sublime
   MANWIDTH=160 MANPAGER='col -bx' man $@ | subl
 }
+
+# -------------------------------------------------------------------
+# Clear download history
+# https://www.macobserver.com/tips/how-to/your-mac-remembers-everything-you-download-heres-how-to-clear-download-history/
+# -------------------------------------------------------------------
+cdlh() {
+	sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
+	sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'vacuum LSQuarantineEvent'
+}
