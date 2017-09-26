@@ -1,12 +1,12 @@
 [user]
-  name = Dale Manthei
-  email = dalemanthei@users.noreply.github.com
+	name = Dale Manthei
+	email = dalemanthei@users.noreply.github.com
 
 [init]
   templatedir = ~/.git-templates
 
 [core]
-  excludesfile = /Users/manthei/.gitignore_global
+	excludesfile = ~/.gitignore_global
   pager = less -x 5,9
 	editor = code --wait
   autocrlf = input
@@ -34,11 +34,11 @@
   trustExitCode = true
   cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 [difftool "sourcetree"]
-  cmd = /usr/local/bin/bcomp $LOCAL $REMOTE
-  path =
+	cmd = /usr/local/bin/bcomp $LOCAL $REMOTE
+	path =
 [mergetool "sourcetree"]
-  cmd = /usr/local/bin/bcomp $LOCAL $REMOTE $BASED $MERGED
-  trustExitCode = true
+	cmd = /usr/local/bin/bcomp $LOCAL $REMOTE $BASED $MERGED
+	trustExitCode = true
 [push]
   default = simple
 
@@ -158,4 +158,6 @@
 	# rebase = true
 
 [credential "https://stash.veritas.com"]
-	helper = /Users/dale.manthei/.git-credential-veritas-stash --autorun
+	helper = /usr/local/bin/tok git
+[commit]
+	template = /Users/dale.manthei/.stCommitMsg
