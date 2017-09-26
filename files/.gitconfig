@@ -3,7 +3,7 @@
 	email = dalemanthei@users.noreply.github.com
 
 [init]
-  templatedir = ~/.git-templates
+  # templatedir = ~/.git-templates
 
 [core]
 	excludesfile = ~/.gitignore_global
