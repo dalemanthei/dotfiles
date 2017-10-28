@@ -2,6 +2,8 @@
 export ZSH=$HOME/.oh-my-zsh
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+# https://github.com/drduh/macOS-Security-and-Privacy-Guide
+export HOMEBREW_NO_ANALYTICS=1
 
 export LANG=en_US.UTF-8
 
