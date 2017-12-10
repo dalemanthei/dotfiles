@@ -12,13 +12,22 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 export OFEXPORT_HOME="/Users/manthei/Dropbox/scripts/ofexport"
 # export GROOVY_HOME=/usr/local/opt/groovy/libexec
-export JAVA_HOME=`/usr/libexec/java_home`
 # export GRAILS_HOME=/usr/local/opt/grails/libexec
 
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# /usr/local/bin should already be in the path, adding a
+# non-existant path shouldn't hurt anything that much
+export PATH=$HOME/homebrew/bin:$PATH
+
+# Leverage differences in userid for the moment
+# if [[ "$USER" == "manthei" ]]; then
+# 	export PATH=$HOME/homebrew/bin:$PATH
+# else
+# 	export PATH=$HOME/bin:/usr/local/bin:$PATH
+# 	export JAVA_HOME=`/usr/libexec/java_home`
+# fi
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# export PATH="/usr/local/heroku/bin:$PATH"
 
 # From the end of this page: https://github.com/kriskowal/q
 # export Q_DEBUG=1 node server.js

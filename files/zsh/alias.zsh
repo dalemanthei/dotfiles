@@ -29,6 +29,11 @@ alias ldf="ls -Ald .*"		# list only dotfiles
 alias lt='ls -Alt && echo "------Oldest--"'		# list newest first
 alias ltr='ls -Alrt && echo "------Newest--"' # list oldest first
 
+# Time Machine
+# -------------------------------------------------------------------
+alias ltmx="mdfind -onlyin . 'com_apple_backup_excludeItem = com.apple.backupd'"
+alias ltmxg="mdfind 'com_apple_backup_excludeItem = com.apple.backupd'"
+
 # Miscellaneous
 # -------------------------------------------------------------------
 

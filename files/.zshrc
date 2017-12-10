@@ -7,7 +7,13 @@ source $ZSH/oh-my-zsh.sh
 
 plugins=(git node gulp grunt git-flow git-hubflow ssh-agent docker z)
 
+# Leverage differences in userid for the moment
+# This could maybe better key off the presence of ~/homebrew
+if [[ "$USER" == "manthei" ]]; then
+. `brew --prefix`/Users/manthei/homebrew/etc/profile.d/z.sh
+else
 . `brew --prefix`/etc/profile.d/z.sh
+fi
 
 source ~/.dotfiles/files/zsh/export.zsh
 source ~/.dotfiles/files/zsh/alias.zsh
