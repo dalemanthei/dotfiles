@@ -1,3 +1,7 @@
+# Veritas only aliases, delete when no longer there
+alias rmw="/Users/dale.manthei/bin/remote-mount-webui"
+alias rua="/Users/dale.manthei/bin/remote-unmount-all"
+
 # Tip of the hat to:
 # Terpstra aliases http://brettterpstra.com/2013/03/31/a-few-more-of-my-favorite-shell-aliases/
 
