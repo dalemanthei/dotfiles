@@ -67,7 +67,7 @@
 
   # Save or Restore Work In Progress
   # -------------------------------------------------------------------
-  swip = "commit -a -m 'WORK IN PROGRESS use "git rwip" to reset' --no-verify"
+  swip = "commit -a -m 'fix(WIP): WORK IN PROGRESS use "git rwip" to reset' --no-verify"
   rwip = "!git reset --soft HEAD~ && git reset"
 
   # alternative to stashing and popping
@@ -157,6 +157,8 @@
 [pull]
 	# rebase = true
 
+[credential "https://stash.veritas.com"]
+    helper =
 [credential "https://stash.veritas.com"]
 	helper = /usr/local/bin/tok git
 [commit]
