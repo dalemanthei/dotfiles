@@ -1,4 +1,20 @@
 
+
+function iterm2_print_user_vars() {
+  iterm2_set_user_var badge $(dir_badges)
+  iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
+}
+
+function dir_badges() {
+    while read directory badge || [[ -n "$directory" ]]
+    do
+        if [[ "$PWD" == $directory* ]]; then
+            echo $badge
+            break
+        fi
+    done < ~/.badges
+}
+
 # -------------------------------------------------------------------
 # cd to the path of the front Finder or Path Finder window
 # from http://brettterpstra.com/2013/02/09/quick-tip-jumping-to-the-finder-location-in-terminal/

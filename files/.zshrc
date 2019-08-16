@@ -5,7 +5,7 @@ ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
 
-plugins=(git node gulp grunt git-flow git-hubflow ssh-agent docker z)
+plugins=(git node ssh-agent docker z)
 
 # Leverage differences in userid for the moment
 # This could maybe better key off the presence of ~/homebrew
@@ -21,12 +21,16 @@ source ~/.dotfiles/files/zsh/functions.zsh
 source ~/.dotfiles/files/zsh/history.zsh
 source <(npm completion)
 
-# source ~/.iterm2_shell_integration.zsh
+source ~/.iterm2_shell_integration.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# zsh: Place this in .zshrc after "source /Users/georgen/.iterm2_shell_integration.zsh".
 
 # Hack for apple safari'ng the bed
 ssh-add -A 2>/dev/null;
 
 # added by travis gem
 [ -f /Users/manthei/.travis/travis.sh ] && source /Users/manthei/.travis/travis.sh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

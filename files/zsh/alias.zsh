@@ -37,6 +37,8 @@ alias ltmxg="mdfind 'com_apple_backup_excludeItem = com.apple.backupd'"
 # Miscellaneous
 # -------------------------------------------------------------------
 
+alias ffd="open -n /Applications/FirefoxDeveloper.app --args -P developer -no-remote"
+
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"		# Get your current public IP
 
 alias stfu="osascript -e 'set volume output muted true'"		# mute the system volume
@@ -50,3 +52,16 @@ alias flush="sudo killall -HUP mDNSResponder"		# DNS (with update thanks to @bla
 alias ping='/sbin/ping -c 3'	# Limit ping to 3 pings only
 
 alias web='/usr/local/bin/http-server'	# Serve current directory
+
+# Tip 'o the hat to Jesse https://github.com/jesselang/dotfiles/blob/master/profiles/_os/darwin/aliases
+alias reload-camera='sudo killall AppleCameraAssistant;sudo killall VDCAssistant'
+
+alias brnx="echo '\nvdl-nx-1' && git -C ~/code/vdl-nx-1 br && echo '\nvd-nx-2' && git -C ~/code/vdl-nx-2 br && echo '\nvdl-nx-3' && git -C ~/code/vdl-nx-3 br && echo '\nvdl-nx-4' && git -C ~/code/vdl-nx-4 br && echo '\nvdl-nx-master' && git -C ~/code/vdl-nx-master br && echo '\nmaterial-components' && git -C ~/code/material-components br && echo '\nmaterial2' && git -C ~/code/material2 br && echo '\nvdl-angular-master' && git -C ~/code/vdl-angular-master br && echo ''"
+
+alias brvdl="echo '\nvdl-angular-1' &&  git -C ~/code/vdl-angular-1 br && echo '\nvdl-angular-2' && git -C ~/code/vdl-angular-2 br && echo '\nvdl-angular-3' && git -C ~/code/vdl-angular-3 br && echo '\nvdl-angular-4' && git -C ~/code/vdl-angular-4 br && echo '\nmaterial2' && git -C ~/code/material2 br && echo '\nvdl-angular-master' && git -C ~/code/vdl-angular-master br && echo ''"
+
+# Use git town prune-branches to clean up clones
+alias prbrnx="echo '\nvdl-nx-1' && git -C ~/code/vdl-nx-1 town prune-branches && echo '\nvdl-nx-2' && git -C ~/code/vdl-nx-2 town prune-branches && echo '\nvdl-nx-3' && git -C ~/code/vdl-nx-3 town prune-branches && echo '\nvdl-nx-4' && git -C ~/code/vdl-nx-4 town prune-branches"
+
+# Use git town prune-branches to clean up clones
+alias prbrvdl="echo '\nvdl-nx-1' && git -C ~/code/vdl-nx-1 town prune-branches && echo '\nvdl-nx-2' && git -C ~/code/vdl-nx-2 town prune-branches && echo '\nvdl-nx-3' && git -C ~/code/vdl-nx-3 town prune-branches && echo '\nvdl-nx-4' && git -C ~/code/vdl-nx-4 town prune-branches && echo '\nvdl-angular-1' && git -C ~/code/vdl-angular-1 town prune-branches && echo '\nvdl-angular-2' && git -C ~/code/vdl-angular-2 town prune-branches && echo '\nvdl-angular-3' && git -C ~/code/vdl-angular-3  town prune-branches && echo '\nvdl-angular-4' && git -C ~/code/vdl-angular-4 town prune-branches"

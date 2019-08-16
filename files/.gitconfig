@@ -65,13 +65,16 @@
   sa = stash apply
   ss = stash save
 
-  # Save or Restore Work In Progress
-  # -------------------------------------------------------------------
-  swip = "commit -a -m 'fix(WIP): WORK IN PROGRESS use "git rwip" to reset' --no-verify"
-  rwip = "!git reset --soft HEAD~ && git reset"
-
   # alternative to stashing and popping
   # https://codingkilledthecat.wordpress.com/2012/04/27/git-stash-pop-considered-harmful/
+  # -------------------------------------------------------------------
+  swip = "commit -a -m 'fix(wip): work in progress use "git rwip" to reset'"
+  rwip = "!git reset --soft HEAD~ && git reset"
+  # rwip = "!f() { git log -n 1 | grep -q -c 'fix(WIP): WORK IN PROGRESS' && !git reset --soft HEAD~ && git reset }; f"
+  # gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
+  # gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip-- [skip ci]"'
+
+  # Save or Restore Work In Progress
   # -------------------------------------------------------------------
   save = !sh -c 'export PREV=$(git symbolic-ref HEAD|cut -d/ -f3-) && git checkout -b "$1" && git commit -am "$1" --no-verify&& git checkout "$PREV"' -
 
@@ -158,8 +161,12 @@
 	# rebase = true
 
 [credential "https://stash.veritas.com"]
-    helper =
+  helper =
 [credential "https://stash.veritas.com"]
 	helper = /usr/local/bin/tok git
-[commit]
-	template = /Users/dale.manthei/.stCommitMsg
+# [commit]
+# 	template = /Users/dale.manthei/.stCommitMsg
+[pager]
+	branch = false
+# [http]
+# 	sslCAInfo = /Users/dale.manthei/Documents/zscaler_cert.crt
