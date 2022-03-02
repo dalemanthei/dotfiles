@@ -49,6 +49,11 @@
 
 [alias]
 
+  # https://stackoverflow.com/questions/1527234/finding-a-branch-point-with-git
+  # -------------------------------------------------------------------
+  oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+  oldest-ancestor-8 = !zsh -c 'diff -u <(git rev-list --first-parent "${1:-8.3.x}") <(git rev-list --first-parent "${2:-8.x}") | sed -ne \"s/^ //p\" | head -1' -
+
   finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%_10s\\033[m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
 
   # Rebase a branch from the master without pull and merge
@@ -109,6 +114,7 @@
 	repo = town repo
 	ship = town ship
 	sync = town sync
+  c = town config
 
 	new-pull-request = town new-pull-request
 	prune-branches = town prune-branches
@@ -161,12 +167,12 @@
 	# rebase = true
 
 [credential "https://stash.veritas.com"]
-  helper =
-[credential "https://stash.veritas.com"]
+	helper =
 	helper = /usr/local/bin/tok git
 # [commit]
 # 	template = /Users/dale.manthei/.stCommitMsg
 [pager]
 	branch = false
+	tag = false
 # [http]
 # 	sslCAInfo = /Users/dale.manthei/Documents/zscaler_cert.crt
